@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<br lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>semantic 태그 사용해보기</title>
+</head>
+<table border="1" cellspacing="0" cellpadding="10">
+    <th>구분</th>
+    <th>음료</th>
+    <th>가격</th>
+    <th>이미지</th>
+
+    <tr style="text-align: center;">
+        <td rowspan="2">커피류</td>
+        <td>아메리카노</td>
+        <td>4200원</td>
+        <td>
+            <a href="https://namu.wiki/w/%EC%B9%B4%ED%8E%98%20%EC%95%84%EB%A9%94%EB%A6%AC%EC%B9%B4%EB%85%B8">
+                <img style="height: 150px;" src="./커피1.png">
+            </a>
+        </td>
+    </tr>
+
+    <tr style="text-align: center;">
+        <td>돌체라떼</td>
+        <td>4200원</td>
+        <td>
+            <a href="https://namu.wiki/w/%EB%8F%8C%EC%B2%B4%20%EB%9D%BC%EB%96%BC">
+                <img style="height: 150px;" src="./커피2.png">
+            </a>
+        </td>
+    </tr>
+
+    <tr style="text-align: center;">
+        <td rowspan="2">커피류</td>
+        <td>자바칩 프라푸치노</td>
+        <td rowspan="2">5000원</td>
+        <td>
+            <a
+                href="https://namu.wiki/w/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4%20%ED%94%84%EB%9D%BC%ED%91%B8%EC%B9%98%EB%85%B8">
+                <img style="height: 150px;" src="./커피3.png">
+            </a>
+        </td>
+    </tr>
+
+    <tr style="text-align: center;">
+        <td>녹차 프라푸치노</td>
+        <td>
+            <a href="https://m.blog.naver.com/llsarull/222189249589">
+                <img style="height: 150px;" src="./커피4.png">
+            </a>
+        </td>
+    </tr>
+</table>
+
+
+
+<table style="text-align: center; margin-top: 100px;" border="1" cellspacing="0" cellpadding="10">
+
+    <tr>
+        <td colspan="2">1</td>
+        <td rowspan="2">2</td>
+    </tr>
+
+    <tr>
+        <td rowspan="2">3</td>
+        <td>center</td>
+    </tr>
+
+    <tr>
+        <td colspan="2">4</td>
+    </tr>
+</table>
+
+
+
+<h1 style="margin-top: 100px;">설문조사</h1><br />
+이름 <input type="text" name="" id=""><br />
+이메일 <input type="text" name="" id="" placeholder="love@example.com"><br />
+<h1>나이</h1><br />
+
+<label>
+    <input type="radio" name="age">10대
+</label>
+
+<label>
+    <input type="radio" name="age">20대
+</label>
+
+<label>
+    <input type="radio" name="age">30대
+</label>
+
+<label>
+    <input type="radio" name="age">40대
+</label>
+
+<label>
+    <input type="radio" name="age">50대
+</label>
+
+<label>
+    <input type="radio" name="age">60대
+</label>
+
+<h1>원하는 강의(복수응답가능합니다.)</h1>
+
+<label>
+    <input type="checkbox" name="age">html
+</label>
+
+<label>
+    <input type="checkbox" name="age">javascript
+</label>
+
+<label>
+    <input type="checkbox" name="age">css
+</label>
+
+<br/>
+<br/>
+<textarea placeholder="하고 싶은 말을 써주세요:" rows="10" cols="80"></textarea>
+<input type="submit">
+</body>
+</html>
