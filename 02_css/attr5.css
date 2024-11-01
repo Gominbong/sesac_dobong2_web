@@ -3,17 +3,90 @@
     height: 400px;
     margin: 0 auto;
     background-color: #333;
+    
     display: flex;
-    flex-wrap: wrap;
+    /* 
+    flexbox 기본용어
+    - 주축 main axis
+        - 주축의 기본 방향 좌 > 우
+    - 교차축 cross axis
+    */
+
+    /* 1. flex-direction - 주축의 정렬방향 설정
+    - row (default): 좌 > 우
+    - row-reverse: 우 > 좌
+    - column: 위 > 아래
+    - column-reverse: 아래 > 위
+    */
+
+    /* flex-direction: row; */
+    /* flex-direction: row-reverse; */
+    /* flex-direction: column; */
+    /* flex-direction: column-reverse; */
+
+    /* 2. flex-wrap - 줄바꿈 설정
+     - nowrap (default)
+     - wrap
+    */
+    /* flex-wrap: nowrap; */
+    /* flex-wrap: wrap; */
+
+    /* 3. justify-content - 주축의 정렬 방법 
+    flex-direction 이 row 면 가로 col 세로
+
+     - flex-start
+     - flex-end
+     - center
+     - space-between
+     - space-evenly 
+     - space-around
+    */
+    
+    /* justify-content: flex-end; */
+    justify-content: start;
+    /* justify-content: center; */
+    /* justify-content: space-between; */
+    /* justify-content: space-evenly; */
+    /* justify-content: space-around; */
+    
+    /* 4. align-items: 교차축에 대한 정렬 방법
+       - stretch(default): 
+       - flex-start
+       - flex-end
+       - center
+    */
+
+    align-items: stretch;
+    /* align-items: flex-start; */
+    /* align-items: flex-end; */
+    /* align-items: center; */
+
+    /* 5. align-content : 여러행 정렬 조건: flex-wrap이 wrap 상태일떄만(2줄이상)
+       - stretch
+       - flex-start
+       - flex-end
+       - center
+       - space-between
+       - space-around
+       - space-evenly
+    */
+    
+    align-content: flex-start;
+    /* align-content: center; */
+    /* align-content: flex-end; */
+    /* align-content: space-between; */
+    /* align-content: space-around; */
+    /* align-content: space-evenly; */
+
 }
 
 .container > .items{
     width: 100px;
-    height: 100px;
+    /* height: 100px; */
     font-size: 2.5rem;
     font-weight: 700;
     text-align: center;
-    line-height: 100px;
+    /* line-height: 100px; */
 }
 
 .container > .items.item1{
