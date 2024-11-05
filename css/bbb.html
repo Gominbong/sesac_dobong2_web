@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 490px;
+            height: 240px;
+            transform: skewY(26deg);
+            transition: 1s;
+        }
+        img:hover{
+            transform: skew(0);
+            z-index: 10000;
+        }
+        .container{
+            background-color: beige;
+            width: 2000px;
+            height: 1000px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .img_1{
+            position: absolute;
+            margin-right: 25%;
+            z-index: 3;
+            
+        }
+        .img_2{
+            position: absolute;
+            z-index: 2;
+        }
+        .img_3{
+            position: absolute;
+            margin-left: 25%;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="img_1" src="img/beach1.jpg">
+        <img class="img_2" src="img/beach2.jpg">
+        <img class="img_3" src="img/beach3.jpg">
+    </div>
+</body>
+</html>
