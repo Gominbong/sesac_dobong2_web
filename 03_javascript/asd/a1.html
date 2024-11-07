@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    let fruits1 = ["사과", "딸기", "파인애플", "수박", "참외", "오렌지", "자두", "망고"]
+    let fruits2 = ["수박", "사과", "참외", "오렌지", "파인애플", "망고"]
+    let same = [];
+    let diff = [];
+    function asd(f1){
+        for(let f2 of fruits2){
+            console.log("fruits1 =" ,f1 +" fruits2 =" ,f2)
+            if(f2===f1){
+                console.log("같다 same에 푸쉬한다")
+                same.push(f2);
+                return;
+            }else{
+                console.log("다르다")
+                continue
+            }
+        }
+        console.log("fruits1의 "+ f1 +"는 fruits2의 배열안에없습니다.")
+        diff.push(f1)
+    }
+    for (let f1 of fruits1) {
+       asd(f1)
+    }
+    console.log(same);
+    console.log(diff);
+</script>
+<body>
+</body>
+</html>

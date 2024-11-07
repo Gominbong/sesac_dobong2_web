@@ -5,40 +5,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-        function aaa(func) {
-            func();
-            console.log("안녕하z세요")
-        };
-        aaa(bbb)
-
-        function bbb() {
-            console.log("zzzzzz")
-        }
-
-        let count1 = 0;
-        function makeCounter1() {
-            return count1++;
-        }
-        let counter1 = makeCounter1();
-        
-        console.log(counter1); // 0
-        console.log(counter1); // 1
-        console.log(counter1); // 2
-        let counter = makeCounter();
-        function makeCounter() {
-            let count = 0;
-
-            return function () {
-                return count++;
-            };
-        }
-        console.log(counter()); // 0
-        console.log(counter()); // 1
-        console.log(counter()); // 2
-
-    </script>
 </head>
+
+<script>
+    let name = "보라";
+
+    function sayHi() {
+        console.log(name + "님, 안녕하세요.");
+    }
+
+    name = "지민";
+    sayHi(); // "보라" 혹은 "지민" 중 무엇이 출력될까요?
+
+
+    function sum(a) {
+        console.log(a)
+        return function (b) {
+            console.log(b)
+            return function (c) {
+                console.log(c)
+                return a + b + c
+            }
+        }
+    }
+
+    console.log(sum(1)(2)(8)); // 3
+    console.log(sum(5)(-1)(7)); // 4
+
+    console.log("------------------")
+
+    function makeArmy() {
+        let shooters = [];
+
+        for(let i=0; i<10; i++) {
+            let shooter = function () { // shooter 함수
+                
+                console.log(i+"이거추가"); // 몇 번째 shooter인지 출력해줘야 함
+            };
+            shooters.push(shooter);
+            console.log(shooters)            
+           
+        }
+    
+        console.log(shooters)
+        return shooters;
+    }
+
+    let army = makeArmy();
+    army[0](); // 0번째 shooter가 10을 출력함
+    army[5](); // 5번째 shooter 역시 10을 출력함
+    // 모든 shooter가 자신의 번호 대신 10을 출력하고 있음
+
+    console.log(army)
+</script>
 
 <body>
 
