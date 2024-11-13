@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script> 
+    <style>
+        #div1{
+            width: 600px;
+            min-height: 40px;
+            border: 1px solid;
+            display: flex;
+            justify-content: space-evenly;
+            text-align: center;
+        }
+        #div1 > *{
+            width: 20%;
+        }
+        #div1 > div:first-child{
+            color: red;
+        }
+        #div1 > div:last-child{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <label for="">날짜 :
+            <input type="text" id="text1" value="">
+        </label>
+    </div>
+    <div>
+        <label for="">내용 :
+            <input type="text" id="text2" value="">
+        </label>
+    </div>
+    <div>
+        <button id="btn1">작성</button>
+    </div>
+    <div>
+        <h1>2024년 1월 </h1>
+    </div>
+        
+        <div id="div1">
+            <div>일</div>
+            <div>월</div>
+            <div>화</div>
+            <div>수</div>
+            <div>목</div>
+            <div>금</div>
+            <div>토</div>
+        </div>
+        <div id="div1">
+            <div></div>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+        </div>
+        <div id="div1">
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+            <div>10</div>
+            <div>11</div>
+            <div>12</div>
+            <div>13</div>
+        </div>
+        <div id="div1">
+            <div>14</div>
+            <div>15</div>
+            <div>16</div>
+            <div>17</div>
+            <div>18</div>
+            <div>19</div>
+            <div>20</div>
+        </div>
+        <div id="div1">
+            <div>21</div>
+            <div>22</div>
+            <div>23</div>
+            <div>24</div>
+            <div>25</div>
+            <div>26</div>
+            <div>27</div>
+        </div>
+        <div id="div1">
+            <div>28</div>
+            <div>29</div>
+            <div>30</div>
+            <div>31</div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+</body>
+<script>
+    $('#btn1').click(function(){
+        const text1 = $('#text1').val()
+        const text2 = $('#text2').val()
+        console.log($('#text1').val())
+        console.log($('#text2').val())
+
+        const div1 = document.querySelectorAll("#div1 > div")
+        for(let item of div1){
+            console.log(item.textContent)
+            if(item.textContent==text1){
+                const p = document.createElement('p')
+                p.textContent=text2
+                item.append(p)
+            }
+        }
+
+        $('#text1').val("")
+        $('#text2').val("")
+    })
+</script>
+</html>
