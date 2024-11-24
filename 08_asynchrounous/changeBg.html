@@ -13,13 +13,13 @@
         return new Promise(function (resolve, reject) {
           setTimeout(() => {
             document.body.style.backgroundColor = color;
-            resolve("data");
+            resolve("data333");
           }, 1000);
         });
       }
 
       async function exec() {
-        const data = await pinkDrink("red");
+        const data = await pinkDrink();
         console.log(data);
         await pinkDrink("orange");
         await pinkDrink("yellow");
