@@ -5,5 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <script>
+      const loginUser = [
+        {
+          id: "apple",
+          pw: "1234",
+          name: "사과사과",
+        },
+      ];
+      const user = `apple//1234//사과사과
+      banana//4321//바나나나나
+      cocoa//qwer1234//미떼`;
+      console.log(user);
+
+      const result = user.split("\n").map((line) => line.trim().split("//"));
+      console.log(result);
+      console.log("로그인사용자정보 = ", loginUser[0]);
+
+      for (a of result) {
+        console.log(a[0], a[1], a[2]);
+        if (
+          a[0] === loginUser[0].id &&
+          a[1] === loginUser[0].pw &&
+          a[2] === loginUser[0].name
+        ) {
+          console.log("로그인성공");
+          break;
+        } else {
+          console.log("로그인실패");
+        }
+      }
+    </script>
+  </body>
 </html>

@@ -47,6 +47,10 @@ app.post("/fetch", (req, res) => {
   res.send(req.body);
 });
 
+app.get("/api", (req, res) => {
+  res.render("api");
+});
+
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
 });

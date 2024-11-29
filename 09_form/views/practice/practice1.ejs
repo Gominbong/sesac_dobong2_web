@@ -4,10 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>실습문제1</title>
+    <!-- Axios CDN -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <h1>실습문제1</h1>
-    <form action="/practice1-get" method="get">
+    <h2>실습문제1</h2>
+    <form name="register">
       <label>
         이름
         <input type="text" name="name" />
@@ -61,7 +63,49 @@
           <span>음식</span>
         </label>
       </fieldset>
-      <button>제출</button>
+      <button type="button" onclick="submitInfo()">제출</button>
     </form>
+    <div class="register-result"></div>
+    <script>
+      const form = document.forms["register"];
+      const registerResult = document.querySelector(".register-result");
+
+      function submitInfo() {
+        // console.log("click");
+        // GET /axios-practice1
+        console.log("----checkbox-----");
+        console.log(form.favorite);
+        console.log(form.favorite.value); // 항상 빈값
+        console.log("----radio-----");
+        console.log(form.gender);
+        console.log(form.gender.value);
+
+        const favValue = [];
+        form.favorite.forEach((input) => {
+          if (input.checked) favValue.push(input.value);
+        });
+        console.log("favValue ----");
+        console.log(favValue);
+        const data = {
+          name: form.name.value,
+          gender: form.gender.value,
+          favorite: favValue,
+        };
+        axios({
+          method: "get",
+          url: "/axios-practice1",
+          params: data,
+        }).then((response) => {
+          console.log(response.data);
+          const { name, favorite } = response.data;
+          // ~~님 환영합니다!
+          // 가입이 완료되었습니다!
+          // 취미는 ~~
+          registerResult.textContent = `${name}님 환영합니다.
+          가입이 완료되었습니다.
+          취미는 ${favorite}`;
+        });
+      }
+    </script>
   </body>
 </html>

@@ -3,85 +3,85 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>실습2</title>
+    <title>실습문제2</title>
+    <!-- Axios CDN -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+      label {
+        display: flex;
+      }
+
+      label span {
+        width: 80px;
+      }
+
+      .success {
+        color: blue;
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+
+      .error {
+        color: red;
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+    </style>
   </head>
   <body>
-    <h1>실습문제2</h1>
-    <form action="/practice2-post" method="post">
-      <label>
-        이름
-        <input type="text" name="name" />
+    <h2>실습문제2</h2>
+    <form name="login">
+      <label for="userId">
+        <span>아이디</span>
+        <input type="text" name="userId" id="userId" required />
+      </label>
+      <label for="userPw">
+        <span>비밀번호</span>
+        <input type="password" name="userPw" id="userPw" required />
       </label>
 
-      <fieldset>
-        <legend>성별</legend>
-        <label>
-          <input type="radio" name="gender" value="남자" />
-          <span>남자</span>
-        </label>
-        <label>
-          <input type="radio" name="gender" value="여자" />
-          <span>여자</span>
-        </label>
-      </fieldset>
-      <fieldset>
-        <legend>생년월일</legend>
-        <select name="year">
-          <% for(let i=1980; i <=2010;i++){ %>
-          <option value="<%=i%>"><%=i%></option>
-          <% } %>
-        </select>
-        <span>년</span>
-        <select name="month">
-          <% for(let i=1; i <=12;i++){ %>
-          <option value="<%=i%>"><%=i%></option>
-          <% } %>
-        </select>
-        <span>월</span>
-        <select name="date">
-          <% for(let i=1; i <=31;i++){ %>
-          <option value="<%=i%>"><%=i%></option>
-          <% } %>
-        </select>
-        <span>일</span>
-      </fieldset>
-
-      <fieldset>
-        <legend>관심사</legend>
-        <label>
-          <input type="checkbox" name="favorite" value="여행" />
-          <span>여행</span>
-        </label>
-        <label>
-          <input type="checkbox" name="favorite" value="패션" />
-          <span>패션</span>
-        </label>
-        <label>
-          <input type="checkbox" name="favorite" value="음식" />
-          <span>음식</span>
-        </label>
-      </fieldset>
-
-      <hr />
-      <fieldset>
-        <legend>추가 속성들</legend>
-        <label>
-          좋아하는 색상
-          <input type="color" name="color" />
-        </label>
-
-        <br />
-        <label>
-          좋아하는 숫자
-          <input type="number" />
-        </label>
-        <br />
-        <label>
-          다짐 한마디
-          <textarea name="comment" cols="30" rows="10"></textarea>
-        </label>
-      </fieldset>
-      <input type="submit" value="제출" />
+      <br />
+      <button type="button" onclick="clickLogin()">로그인</button>
     </form>
+    <div class="login-result"></div>
   </body>
+
+  <script>
+    function clickLogin() {
+      const form = document.forms["login"];
+      const loginResult = document.querySelector(".login-result");
+      const data = {
+        userId: form.userId.value,
+        userPw: form.userPw.value,
+      };
+
+      console.log(data);
+      // 유효성 검증
+      console.log(form.userId.checkValidity());
+      console.log(form.userPw.checkValidity());
+      if (!form.userId.checkValidity() || !form.userPw.checkValidity()) {
+        loginResult.innerText = "아이디와 비밀번호는 필수입니다.";
+        return;
+      }
+
+      axios({
+        url: "/practice2",
+        method: "post",
+        data: data,
+      }).then((res) => {
+        console.log(res.data);
+        // {isSuccess: false}
+        // {isSuccess: true, userId: 'banana'}
+        if (res.data.isSuccess) {
+          loginResult.textContent = `${res.data.userId}님 로그인 성공~!😊`;
+          loginResult.classList.add("success");
+          loginResult.classList.remove("error");
+        } else {
+          loginResult.textContent = "아이디 또는 패스워드 오류입니다🥺";
+          loginResult.classList.add("error");
+          loginResult.classList.remove("success");
+        }
+      });
+    }
+  </script>
 </html>

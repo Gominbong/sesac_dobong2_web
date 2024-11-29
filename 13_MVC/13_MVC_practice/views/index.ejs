@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <label> 아이디 <input type="text" name="id" id="id" /> </label>
+    </div>
+
+    <div>
+      <label> 비밀번호 <input type="text" name="pw" id="pw" /> </label>
+    </div>
+
+    <div>
+      <button onclick="login()">로그인실습1</button
+      ><button onclick="login2()">로그인실습2</button>
+    </div>
+    <p style="color: red; font-weight: 900"></p>
+
+    <script>
+      function login() {
+        const id = document.getElementById("id").value;
+        const pw = document.getElementById("pw").value;
+        console.log(id, pw);
+
+        axios({
+          method: "post",
+          url: "/login",
+          data: { loginForm: { id: id, pw: pw } },
+        }).then((res) => {
+          console.log("확인 =", res.data);
+          if (
+            res.data.loginDb.user[0].id === res.data.loginForm.id &&
+            res.data.loginDb.user[0].pw === res.data.loginForm.pw
+          ) {
+            document.querySelector("p").innerText = "로그인 성공";
+          } else {
+            document.querySelector("p").innerText = "아이디 또는 패스워드 오류";
+          }
+        });
+      }
+
+      function login2() {
+        const id = document.getElementById("id").value;
+        const pw = document.getElementById("pw").value;
+        console.log(id, pw);
+        axios({
+          method: "post",
+          url: "/login2",
+          data: { loginForm: { id: id, pw: pw } },
+        }).then((res) => {
+          console.log("res 확인 =", res.data);
+          console.log("유저DB문자열 = ", res.data.loginDb2.user);
+          const loginDb2 = res.data.loginDb2.user;
+          const result = loginDb2
+            .split("\n")
+            .map((line) => line.trim().split("//"));
+          console.log("문자열 배열로 변환 = ", result);
+
+          for (a of result) {
+            console.log(a[0], a[1], a[2]);
+            if (
+              a[0] === res.data.loginForm.id &&
+              a[1] === res.data.loginForm.pw
+            ) {
+              console.log("로그인성공");
+              document.querySelector("p").innerText =
+                `${a[2]}` + "님  환영합니다";
+              break;
+            } else {
+              console.log("로그인실패");
+              document.querySelector("p").innerText =
+                "아이디 또는 패스워드 오류";
+            }
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
