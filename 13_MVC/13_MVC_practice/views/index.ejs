@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Document</title>
   </head>
   <body>
@@ -16,17 +15,16 @@
     </div>
 
     <div>
-      <button onclick="login()">로그인실습1</button
-      ><button onclick="login2()">로그인실습2</button>
+      <button onclick="login()">로그인</button
+      ><button onclick="login()">로그인</button>
     </div>
-    <p style="color: red; font-weight: 900"></p>
+    <p style="color: red">로그인 성공 실패</p>
 
     <script>
       function login() {
         const id = document.getElementById("id").value;
         const pw = document.getElementById("pw").value;
         console.log(id, pw);
-
         axios({
           method: "post",
           url: "/login",
