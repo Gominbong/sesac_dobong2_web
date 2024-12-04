@@ -1,0 +1,13 @@
+@server=http://localhost:8080
+
+### get요청
+get {{server}}/
+
+
+### post요청
+post http://localhost:8080/test
+Content-Type: application/json
+
+{
+  "name": "앨리"
+}
