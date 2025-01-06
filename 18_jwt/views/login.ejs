@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>로그인</h1>
+    <form name="login-form">
+      <div>
+        <label for="id">ID</label>
+        <input type="text" name="id" id="id" placeholder="id를 입력하세요" />
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="비밀번호를 입력하세요"
+        />
+      </div>
+      <button type="button" onclick="login()">로그인</button>
+    </form>
+
+    <script>
+      /*
+      - 로컬 스토리지
+        - 브라우저에 저장되는 정보
+        - 로그인 정보, 테마 정보, 사용자 설정 정보 등
+        - 로컬 스토리지에 저장된 정보는 브라우저를 종료해도 유지됨
+        - 로컬 스토리지에 저장된 정보는 브라우저를 종료하거나, 사용자가 직접 삭제하지 않는 한 계속 유지됨
+        - 로컬 스토리지에 저장된 정보는 도메인 별로 저장됨
+        - 로컬 스토리지에 저장된 정보는 문자열 형태로 저장됨
+        - 로컬 스토리지에 저장된 정보는 브라우저에서만 접근 가능
+        - 로컬 스토리지에 저장된 정보는 최대 5MB까지 저장 가능
+        localStrage.setItem('key', 'value');
+        localStrage.getItem('key');
+        localStrage.removeItem('key');
+        localStrage.clear();
+
+      */
+
+      async function login() {
+        //POST /login
+        const form = document["login-form"];
+        const loginResponse = await axios({
+          method: "post",
+          url: "/login",
+          data: {
+            id: form.id.value,
+            pw: form.password.value,
+          },
+        });
+
+        console.log(loginResponse.data);
+        const { message, token, result } = loginResponse.data;
+        if (result) {
+          //토큰 정보를 로컬 스토리지에 저장
+          localStorage.setItem("login", token);
+          document.location.href = "/";
+        } else {
+          alert(message);
+          form.reset();
+        }
+      }
+    </script>
+  </body>
+</html>

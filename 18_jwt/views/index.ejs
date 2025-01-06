@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JWT</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <H1>JWT</H1>
+    <div id="info"></div>
+    <script>
+      //즉시 실행 함수
+      (async () => {
+        console.log("화살표 함수 즉시 실행");
+      })();
+
+      // axios 요청과 전역 변수 선언을 피하기 위해서
+      (async () => {
+        const token = localStorage.getItem("login");
+        const info = document.getElementById("info");
+        console.log(token); //토큰이 없을 때 null
+        let data;
+        if (!token) {
+          //토큰이 없을 때
+          //로그인 페이지로 이동
+          data = '<a href="/login">로그인</a>';
+        } else {
+          // 토큰이 있을 때
+          // 토큰 검증 요청
+          // POST /token
+          const response = await axios({
+            method: "post",
+            url: "/token",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          // ~ 님 환영합니다, 로그아웃 버튼
+          console.log(response.data);
+          if (response.data.result) {
+            data = `<p>${response.data.name}님 환영합니다.!!</p>
+             <button onclick="logout()">로그아웃</button>`;
+          }
+        }
+        info.innerHTML = data;
+      })();
+
+      function logout() {
+        localStorage.removeItem("login");
+        document.location.reload();
+      }
+    </script>
+  </body>
+</html>

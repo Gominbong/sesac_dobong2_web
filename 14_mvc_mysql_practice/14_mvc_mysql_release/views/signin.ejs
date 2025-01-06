@@ -39,16 +39,16 @@
         })
           .then((res) => {
             console.log("res데이터 확인 = ", res.data);
-            console.log("res user 데이터 확인 = ", res.data.user[0]);
+            console.log("res user 데이터 확인 = ", res.data.user);
             if (res.data.login === true) {
               console.log("로그인 성공");
               document.querySelector("input[name=userid]").value =
-                res.data.user[0].userid;
+                res.data.user.userid;
               document.forms["form_info"].submit();
             }
             if (res.data.login === false) {
               console.log("로그인 실패");
-              alert("로그인 실패");
+              alert(res.data.message);
               form.reset();
             }
           })

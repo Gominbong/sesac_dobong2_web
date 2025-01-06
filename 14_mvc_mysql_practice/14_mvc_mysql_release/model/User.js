@@ -1,5 +1,9 @@
 // TODO: DB(mysql) 연결
-const mysql = require("mysql");
+const Sequelize = require("sequelize");
+let config = require(__dirname + "/../config/config.js");
+console.log(config);
+config = config["development"];
+const mysql = require("mysql2");
 const conn = mysql.createConnection({
   host: "localhost",
   user: "sesac",
@@ -12,9 +16,7 @@ exports.CreateUser = (data, cb) => {
   conn.query(
     `insert into user(userid, name, pw) values("${data.userid}", "${data.name}", "${data.pw}")`,
     (err, rows) => {
-      try {
-        cb(err);
-      } catch (e) {}
+      cb(err);
     }
   );
 };

@@ -30,14 +30,18 @@
           method: "post",
           url: "/user/signup",
           data: data,
-        }).then((res) => {
-          console.log("signup.ejs에서 res 데이터 확인 = ", res.data);
-          if (res.data.signup === true) {
-            document.location.href = "/user/signin";
-          } else {
-            alert(res.data.message);
-          }
-        });
+        })
+          .then((res) => {
+            if (res.data.signup === true) {
+              document.location.href = "/user/signin";
+            }
+            if (res.data.signup === false) {
+              alert(res.data.message);
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       }
     </script>
   </body>

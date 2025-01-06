@@ -1,7 +1,7 @@
 const express = require("express");
 const db = require("./models");
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT;
 
 // 미들웨어처리
 app.set("view engine", "ejs");
@@ -9,13 +9,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/static", express.static(__dirname + "/static"));
 
-// TODO: 라우팅 분리
-const userRouter = require("./routes/user");
-// 기본 주소: localhost:PORT/user <- 주의!!
-app.use("/", userRouter);
-// TODO: 404 에러 처리
-app.use("/", (req, res) => {
-  res.status(404).render("404");
+// 라우터
+const indexRouter = require("./routes");
+app.use("/", indexRouter);
+
+// 404 에러처리
+app.get("*", (req, res) => {
+  res.render("404");
 });
 
 db.sequelize.sync({ force: false }).then((result) => {

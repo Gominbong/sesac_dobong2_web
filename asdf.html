@@ -4,38 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-  </head>
-  <body>
-    <script>
-      const loginUser = [
-        {
-          id: "apple",
-          pw: "1234",
-          name: "사과사과",
-        },
-      ];
-      const user = `apple//1234//사과사과
-      banana//4321//바나나나나
-      cocoa//qwer1234//미떼`;
-      console.log(user);
-
-      const result = user.split("\n").map((line) => line.trim().split("//"));
-      console.log(result);
-      console.log("로그인사용자정보 = ", loginUser[0]);
-
-      for (a of result) {
-        console.log(a[0], a[1], a[2]);
-        if (
-          a[0] === loginUser[0].id &&
-          a[1] === loginUser[0].pw &&
-          a[2] === loginUser[0].name
-        ) {
-          console.log("로그인성공");
-          break;
-        } else {
-          console.log("로그인실패");
+    <style>
+      /*갤럭시 기준 360 */
+      @media (min-width: 360px) {
+        .container_360px {
+          max-width: 600px;
+          background-color: red;
         }
       }
-    </script>
+      /* 갤럭시 기준 600 */
+      @media (min-width: 600px) {
+        .container_600px {
+          background-color: yellow;
+          max-width: 1024px;
+        }
+      }
+      /* pc */
+      @media (min-width: 1024px) {
+        .container_1024px {
+          background-color: blue;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container_360px">
+      <p>갤럭시 최소 360</p>
+      <img src="Frame 1.png" />
+    </div>
+
+    <div class="container_600px">
+      <p>태블릿 최소 600</p>
+    </div>
+
+    <div class="container_1024px">
+      <p>pc 최소 1024</p>
+    </div>
   </body>
 </html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>온도계 예시</title>
+    <style>
+      .thermometer {
+        position: relative;
+        width: 40px;
+        height: 200px;
+        background-color: #e0e0e0;
+        border-radius: 20px;
+        margin: 50px auto;
+        border: 2px solid #ccc;
+      }
+      .mercury {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 50%;
+        background-color: #ff0000;
+        border-radius: 20px 20px 0 0;
+        transition: height 0.3s ease;
+      }
+      .bulb {
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 60px;
+        background-color: #ff0000;
+        border-radius: 50%;
+        border: 2px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="thermometer">
+      <div class="mercury" id="mercury"></div>
+      <div class="bulb"></div>
+    </div>
+
+    <script>
+      // 온도 값을 설정하는 함수 (예: 75%)
+      function setTemperature(percentage) {
+        const mercury = document.getElementById("mercury");
+        mercury.style.height = percentage + "%";
+      }
+
+      // 예시: 75%로 설정
+      setTemperature(75);
+    </script>
+  </body>
+</html>
