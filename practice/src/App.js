@@ -10,10 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/student/name" element={<StudentPage name="sean" />} />
-        <Route
-          path="/student/codingon"
-          element={<CodingonPage name="codingon" />}
-        />
+        <Route path="/student/:name" element={<CodingonPage />} />
         <Route path="/student/new" element={<NewPage />} />
       </Routes>
     </>

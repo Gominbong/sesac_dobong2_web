@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router";
-export default function CodingonPage({ name }) {
+export default function CodingonPage() {
   const navigate = useNavigate();
-
+  const { name } = useParams();
   return (
     <header className="Header">
       <span>
